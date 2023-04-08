@@ -22,7 +22,8 @@ class Header extends EthObject {
       'extraData',
       'mixHash',
       'nonce',
-      'baseFeePerGas'
+      'baseFeePerGas',
+      'withdrawalsRoot'
     ]
   }
 
@@ -55,6 +56,9 @@ class Header extends EthObject {
       ]
       if (rpcResult.baseFeePerGas !== undefined && rpcResult.baseFeePerGas !== null) {
         data.push(toBuffer(rpcResult.baseFeePerGas));
+      }
+      if (rpcResult.withdrawalsRoot !== undefined && rpcResult.withdrawalsRoot !== null) {
+        data.push(toBuffer(rpcResult.withdrawalsRoot)
       }
       return new this(data);
     } else {
