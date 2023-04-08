@@ -58,7 +58,7 @@ class Header extends EthObject {
         data.push(toBuffer(rpcResult.baseFeePerGas));
       }
       if (rpcResult.withdrawalsRoot !== undefined && rpcResult.withdrawalsRoot !== null) {
-        data.push(toBuffer(rpcResult.withdrawalsRoot)
+        data.push(toBuffer(rpcResult.withdrawalsRoot));
       }
       return new this(data);
     } else {
