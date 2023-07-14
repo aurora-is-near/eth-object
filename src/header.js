@@ -23,7 +23,9 @@ class Header extends EthObject {
       'mixHash',
       'nonce',
       'baseFeePerGas',
-      'withdrawalsRoot'
+      'withdrawalsRoot',
+      'dataGasUsed',
+      'excessDataGas'
     ]
   }
 
@@ -59,6 +61,12 @@ class Header extends EthObject {
       }
       if (rpcResult.withdrawalsRoot !== undefined && rpcResult.withdrawalsRoot !== null) {
         data.push(toBuffer(rpcResult.withdrawalsRoot));
+      }
+      if (rpcResult.dataGasUsed !== undefined && rpcResult.dataGasUsed !== null) {
+        data.push(toBuffer(rpcResult.dataGasUsed));
+      }
+      if (rpcResult.excessDataGas !== undefined && rpcResult.excessDataGas !== null) {
+        data.push(toBuffer(rpcResult.excessDataGas));
       }
       return new this(data);
     } else {
