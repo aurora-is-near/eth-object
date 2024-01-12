@@ -24,8 +24,9 @@ class Header extends EthObject {
       'nonce',
       'baseFeePerGas',
       'withdrawalsRoot',
-      'dataGasUsed',
-      'excessDataGas'
+      'blobGasUsed',
+      'excessBlobGas',
+      'parentBeaconBlockRoot'
     ]
   }
 
@@ -62,11 +63,14 @@ class Header extends EthObject {
       if (rpcResult.withdrawalsRoot !== undefined && rpcResult.withdrawalsRoot !== null) {
         data.push(toBuffer(rpcResult.withdrawalsRoot));
       }
-      if (rpcResult.dataGasUsed !== undefined && rpcResult.dataGasUsed !== null) {
-        data.push(toBuffer(rpcResult.dataGasUsed));
+      if (rpcResult.blobGasUsed !== undefined && rpcResult.blobGasUsed !== null) {
+        data.push(toBuffer(rpcResult.blobGasUsed));
       }
-      if (rpcResult.excessDataGas !== undefined && rpcResult.excessDataGas !== null) {
-        data.push(toBuffer(rpcResult.excessDataGas));
+      if (rpcResult.excessBlobGas !== undefined && rpcResult.excessBlobGas !== null) {
+        data.push(toBuffer(rpcResult.excessBlobGas));
+      }
+      if (rpcResult.parentBeaconBlockRoot !== undefined && rpcResult.parentBeaconBlockRoot !== null) {
+        data.push(toBuffer(rpcResult.parentBeaconBlockRoot));
       }
       return new this(data);
     } else {
