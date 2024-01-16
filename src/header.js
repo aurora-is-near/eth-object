@@ -85,6 +85,15 @@ class Header extends EthObject {
     rpcResult.gasLimit = web3.utils.toHex(rpcResult.gasLimit)
     rpcResult.gasUsed = web3.utils.toHex(rpcResult.gasUsed)
     rpcResult.timestamp = web3.utils.toHex(rpcResult.timestamp)
+    if (rpcResult.baseFeePerGas !== undefined && rpcResult.baseFeePerGas !== null) {
+      rpcResult.baseFeePerGas = web3.utils.toHex(rpcResult.baseFeePerGas)
+    }
+    if (rpcResult.blobGasUsed !== undefined && rpcResult.blobGasUsed !== null) {
+      rpcResult.blobGasUsed = web3.utils.toHex(rpcResult.blobGasUsed)
+    }
+    if (rpcResult.excessBlobGas !== undefined && rpcResult.excessBlobGas !== null) {
+      rpcResult.excessBlobGas = web3.utils.toHex(rpcResult.excessBlobGas)
+    }
     return this.fromRpc(rpcResult)
   }
 }
