@@ -23,7 +23,10 @@ class Header extends EthObject {
       'mixHash',
       'nonce',
       'baseFeePerGas',
-      'withdrawalsRoot'
+      'withdrawalsRoot',
+      'blobGasUsed',
+      'excessBlobGas',
+      'parentBeaconBlockRoot'
     ]
   }
 
@@ -60,6 +63,15 @@ class Header extends EthObject {
       if (rpcResult.withdrawalsRoot !== undefined && rpcResult.withdrawalsRoot !== null) {
         data.push(toBuffer(rpcResult.withdrawalsRoot));
       }
+      if (rpcResult.blobGasUsed !== undefined && rpcResult.blobGasUsed !== null) {
+        data.push(toBuffer(rpcResult.blobGasUsed));
+      }
+      if (rpcResult.excessBlobGas !== undefined && rpcResult.excessBlobGas !== null) {
+        data.push(toBuffer(rpcResult.excessBlobGas));
+      }
+      if (rpcResult.parentBeaconBlockRoot !== undefined && rpcResult.parentBeaconBlockRoot !== null) {
+        data.push(toBuffer(rpcResult.parentBeaconBlockRoot));
+      }
       return new this(data);
     } else {
       return new this()
@@ -73,6 +85,15 @@ class Header extends EthObject {
     rpcResult.gasLimit = web3.utils.toHex(rpcResult.gasLimit)
     rpcResult.gasUsed = web3.utils.toHex(rpcResult.gasUsed)
     rpcResult.timestamp = web3.utils.toHex(rpcResult.timestamp)
+    if (rpcResult.baseFeePerGas !== undefined && rpcResult.baseFeePerGas !== null) {
+      rpcResult.baseFeePerGas = web3.utils.toHex(rpcResult.baseFeePerGas)
+    }
+    if (rpcResult.blobGasUsed !== undefined && rpcResult.blobGasUsed !== null) {
+      rpcResult.blobGasUsed = web3.utils.toHex(rpcResult.blobGasUsed)
+    }
+    if (rpcResult.excessBlobGas !== undefined && rpcResult.excessBlobGas !== null) {
+      rpcResult.excessBlobGas = web3.utils.toHex(rpcResult.excessBlobGas)
+    }
     return this.fromRpc(rpcResult)
   }
 }
