@@ -1,5 +1,6 @@
 const { keccak, encode, decode, toBuffer } = require('eth-util-lite')
 const EthObject = require('./ethObject')
+const web3 = require('web3')
 
 class Account extends EthObject{
 
@@ -25,6 +26,12 @@ class Account extends EthObject{
     }else{
       return new Account()
     }
+  }
+  static fromWeb3(web3Result) {
+    let rpcResult = Object.assign({}, web3Result)
+    rpcResult.nonce = web3.utils.toHex(rpcResult.nonce)
+    rpcResult.balance = web3.utils.toHex(rpcResult.balance)
+    return this.fromRpc(rpcResult)
   }
 }
 
