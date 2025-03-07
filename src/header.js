@@ -26,7 +26,8 @@ class Header extends EthObject {
       'withdrawalsRoot',
       'blobGasUsed',
       'excessBlobGas',
-      'parentBeaconBlockRoot'
+      'parentBeaconBlockRoot',
+      'requestsHash'
     ]
   }
 
@@ -71,6 +72,9 @@ class Header extends EthObject {
       }
       if (rpcResult.parentBeaconBlockRoot !== undefined && rpcResult.parentBeaconBlockRoot !== null) {
         data.push(toBuffer(rpcResult.parentBeaconBlockRoot));
+      }
+      if (rpcResult.requestsHash !== undefined && rpcResult.requestsHash !== null) {
+        data.push(toBuffer(rpcResult.requestsHash));
       }
       return new this(data);
     } else {
